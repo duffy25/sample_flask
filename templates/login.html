@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block body %}
+    <div class="container">
+    <legend>Sign in</legend>
+    <div class="row span5">
+<form action="{{ url_for('login') }}" method="post" class="form-horizontal" accept-charset="UTF-8">
+                {% if error %}
+            <div class="alert alert-error">
+                <a class="close" data-dismiss="alert" href="#">x</a>{{ error }}
+            </div>
+            {% endif %}
+  <div class="control-group">
+    <label class="control-label" for="inputUsername">Username</label>
+    <div class="controls">
+      <input type="text" id="inputEmail" placeholder="Username" name="username">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="inputPassword">Password</label>
+    <div class="controls">
+      <input type="password" id="inputPassword" placeholder="Password" name="password">
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      <label class="checkbox">
+        <input type="checkbox"> Remember me
+      </label>
+      <button type="submit" class="btn btn-info">Sign in</button>
+    </div>
+  </div>
+</form>
+</div>
+    </div>
+{% endblock %}
