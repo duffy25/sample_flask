@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>sample_flask</title>
+    {% block title %}<title>sample_flask</title>{% endblock %}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="sample_flask">
     <meta name="author" content="mikeduffy">
@@ -13,7 +13,9 @@
         padding-top: 60px;
         padding-bottom: 40px;
       }
+    {% block style_extend %}{% endblock %}
     </style>
+
 </head>
 <body>
         <div class="navbar navbar-inverse navbar-fixed-top">

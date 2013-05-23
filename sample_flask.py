@@ -72,7 +72,7 @@ def login():
     error = None
     if request.method == 'POST':
         if request.form['username'] != app.config['USERNAME'] or app.config['PASSWORD'] != request.form['password']:
-            error = 'Username and Password does not match'
+            error = 'Wrong Username and password combination.'
         else:
             session['logged_in'] = True
             flash('You were logged in')
