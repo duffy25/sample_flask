@@ -1,5 +1,7 @@
+# -*- coding: utf-8 -*-
+
 from flask import Flask, url_for, request, render_template, redirect, \
-    send_from_directory, session, flash, make_response, g
+    send_from_directory, session, flash, make_response, g, abort, escape
 from werkzeug.utils import secure_filename
 import os
 
@@ -24,31 +26,26 @@ def allowed_file(filename):
 def before_request():
     g.user = None
     if 'user' in session:
-        g.user = session['user']
+        g.user = escape(session['user'])
 
 
 @app.route('/')
 def index():
-
     if not g.user:
         return render_template('index.html')
+        # response = make_response(render_template('index.html', user=abc:w
+        # ))
     else:
         resp = make_response(render_template('index.html'))
         resp.set_cookie('username', g.user)
         return resp
 
 
-@app.route('/hello/')
-@app.route('/hello/<name>')
-def hello(name=None):
-    return render_template('hello.html', name=name)
-    #   use flask.request flask.session flask.g get_flashed_messages()
-
-
-@app.route('/user/<username>')
-def show_user_profile(username):
-    # show the user profile for that user
-    return 'User %s' % username
+@app.route('/user/')
+@app.route('/user/<name>')
+def user(name=None):
+    return render_template('user.html', name=name)
+    # use flask.request flask.session flask.g get_flashed_messages()
 
 
 @app.route('/post/<int:post_id>')
@@ -115,8 +112,19 @@ def upload_file():
     url_for('static', filename='style.css')
 
 
+@app.route('/redirect/')
+def test_redirect():
+    return redirect(url_for('test_error'))
+
+
+@app.route('/test_error/')
+def test_error():
+    abort(404)
+
+
 with app.test_request_context():
-    print url_for('show_user_profile', username="John Doe")
+    print url_for('user', name="John Doe")
+    print url_for('index', next='/')
 
 
 @app.errorhandler(404)
@@ -124,6 +132,18 @@ def page_not_found(error):
     return render_template('404.html'), 404
 
 
+@app.route('/setcookie')
+def set_cookie():
+    count = request.cookies.get('num')
+    resp = make_response(render_template('index.html'))
+    if 'num' in request.cookies:
+        count = int(request.cookies['num']) + 1
+    else:
+        count = 0
+    resp.set_cookie('num', value=str(count), max_age=60, expires=None, domain='*.example.com')  # 60s
+    return resp
+
+
 app.debug = True
 if __name__ == '__main__':
-    app.run()
+    app.run(host="localhost", port=8888, debug=True)
