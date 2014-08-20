@@ -12,7 +12,6 @@ USERNAME = 'admin'
 PASSWORD = 'default'
 SECRET_KEY = os.urandom(24)
 
-
 app = Flask(__name__)
 app.config.from_object(__name__)
 
@@ -87,7 +86,7 @@ def logout():
     return redirect(url_for('index'))
 
 
-#   File Upload
+# File Upload
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
@@ -96,7 +95,7 @@ def upload_file():
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             return send_from_directory(app.config['UPLOAD_FOLDER'],
-                               filename)
+                                       filename)
     return '''
     <!doctype html>
     <title>Upload new File</title>
@@ -108,7 +107,7 @@ def upload_file():
     '''
 
 
-#    Static Files
+    #    Static Files
     url_for('static', filename='style.css')
 
 
@@ -147,5 +146,3 @@ def set_cookie():
 app.debug = True
 if __name__ == '__main__':
     app.run(host="localhost", port=8888, debug=True)
-
-
