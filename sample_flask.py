@@ -144,6 +144,11 @@ def set_cookie():
     return resp
 
 
+@app.route('/tools')
+def tools():
+    return render_template('tools.html')
+
+
 app.debug = True
 if __name__ == '__main__':
     app.run(host="localhost", port=8888, debug=True)
