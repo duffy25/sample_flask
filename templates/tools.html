@@ -1,8 +1,17 @@
 {% extends "layout.html" %}
 {% block body %}
+  {#    <h2>welcome Login = {{ g.user }}</h2>#}
     <div class="container">
-        <h1>Tools page</h1>
-
-        <h2>Index.html welcome Login = {{ g.user }}</h2>
+      <div class="row">
+        {%- block col8 %}
+          <div class="col-xs-12 col-md-9">nothing here</div>{% endblock -%}
+        <div class="col-md-3">
+          <ul class="nav">
+            <li><a href="/tools/weight">Weight</a></li>
+            <li><a href="/tools/time">Time</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
+
 {% endblock %}

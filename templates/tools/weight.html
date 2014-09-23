@@ -1,0 +1,28 @@
+{% extends "tools.html" %}
+{% block col8 %}
+
+  <div class="col-xs-12 col-md-9">
+    <h3>Weight</h3>
+    <hr>
+    <form>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Weight Kg</label>
+        <input class="form-control" id="weight" placeholder="Enter weight">
+      </div>
+
+      <div class="form-group">
+        <label for="exampleInputEmail1">Lbs</label>
+        <input class="form-control" id="lbs" placeholder="Enter Lbs">
+      </div>
+    </form>
+  </div>
+
+
+  {#      <script>#}
+  {#          alert(123);#}
+  {#      </script>#}
+{%- endblock %}
+
+{%- block js %}
+  <script src="{{ url_for('static', filename='js/my.js') }}"></script>
+{% endblock -%}

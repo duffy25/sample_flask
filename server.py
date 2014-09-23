@@ -108,7 +108,7 @@ def upload_file():
     '''
 
 
-    #    Static Files
+    # Static Files
     url_for('static', filename='style.css')
 
 
@@ -147,6 +147,11 @@ def set_cookie():
 @app.route('/tools')
 def tools():
     return render_template('tools.html')
+
+
+@app.route('/tools/weight')
+def tools_weight():
+    return render_template('/tools/weight.html')
 
 
 app.debug = True
