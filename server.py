@@ -149,6 +149,26 @@ def tools():
     return render_template('tools.html')
 
 
+@app.route('/nutrition')
+def nutrition():
+    return render_template('nutrition.html')
+
+
+@app.route('/nutrition/recovery')
+def recovery():
+    return render_template('/nutrition/recovery.html')
+
+
+@app.route('/nutrition/breakfast')
+def breakfast():
+    return render_template('/nutrition/breakfast.html')
+
+
+@app.route('/nutrition/meals')
+def meals():
+    return render_template('/nutrition/meals.html')
+
+
 @app.route('/tools/weight')
 def tools_weight():
     return render_template('/tools/weight.html')
